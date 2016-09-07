@@ -11,41 +11,41 @@
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
@@ -61,34 +61,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 * Recommended: use a compiled version, especially in production!
 	 */
-
+	
 	'use strict';
-
+	
 	module.exports = (function(){
-
+	
 	    var angular;
-
+	
 	    try {
 	        angular = __webpack_require__(1);
 	    } catch(err){ }
-
+	
 	    if(!angular || !angular.version){
 	        /*global window: true*/
 	        angular = window.angular;
 	        /*global window: false*/
 	    }
-
+	
 	    if(!angular || !angular.version){
 	        throw new Error('ionic-material could not load angular module :(');
 	    }
-
+	
 	    // set up angular module
 	    var app = angular.module('ionic-material', ['ionic']);
-
+	
 	    // Import Dependencies
 	    __webpack_require__(2)(app);
 	    __webpack_require__(3)(app);
-
+	
 	    return 'ionic-material';
 	})();
 
@@ -105,7 +105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	'use strict';
-
+	
 	/*!
 	 * Fork by Zach Fitzgerald and other contributors of Ionic Material
 	 *
@@ -119,29 +119,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	module.exports = function (angularApp) {
-
+	
 		angularApp.factory('ionicMaterialInk', ['$timeout', ink]);
-
+	
 		function ink ($timeout){
 	            /*global document*/
 	            var Ink = Ink || {};
-
+	
 	            // all DOM nodes
 	            var $$;
-
+	
 	            // phantomJS throws an error when you try to use document.querySelectorAll.bind
 	            if(document && document.querySelectorAll && document.querySelectorAll.bind){
 	                try{
 	                    // all DOM nodes
 	                    $$ = document.querySelectorAll.bind(document);
-
+	
 	                } catch(e){}
 	            } else{
 	                    /**
 	                     * mout.js 0.11.0 bind and slice polyfills (substitutes?)
 	                     * TODO: pull out mout.js bind and slice molyfills and inject into material.ink
 	                     */
-
+	
 	                    /**
 	                     * Create slice of source array or array-like object
 	                     */
@@ -155,27 +155,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        } else {
 	                            start = Math.min(start, len);
 	                        }
-
-
+	
+	
 	                        if (end == null) {
-
+	
 	                            end = len;
 	                        } else if (end < 0) {
 	                            end = Math.max(len + end, 0);
 	                        } else {
 	                            end = Math.min(end, len);
 	                        }
-
+	
 	                        var result = [];
 	                        while (start < end) {
 	                            result.push(arr[start++]);
 	                        }
-
+	
 	                        return result;
 	                    };
-
-
-
+	
+	
+	
 	                    /**
 	                     * Return a function that will execute in the given context, optionally adding any additional supplied parameters to the beginning of the arguments collection.
 	                     * @param {Function} fn  Function.
@@ -189,24 +189,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            return fn.apply(context, argsArr.concat(slicePolyfill(arguments)));
 	                        };
 	                    };
-
+	
 	                    $$ = bindPolyfill(document.querySelectorAll, document);
 	                    /*jshint ignore:end */
 	            }
-
+	
 	            if (!$$){
 	                throw new Error('ionic material ink module could not create reference of DOM nodes');
 	            }
-
+	
 	            // Find exact position of element
 	            function isWindow(obj) {
 	                return obj !== null && obj === obj.window;
 	            }
-
+	
 	            function getWindow(elem) {
 	                return isWindow(elem) ? elem : elem.nodeType === 9 && elem.defaultView;
 	            }
-
+	
 	            function offset(elem) {
 	                var docElem, win,
 	                    box = {
@@ -214,9 +214,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        left: 0
 	                    },
 	                    doc = elem && elem.ownerDocument;
-
+	
 	                docElem = doc.documentElement;
-
+	
 	                if (typeof elem.getBoundingClientRect !== typeof undefined) {
 	                    box = elem.getBoundingClientRect();
 	                }
@@ -226,7 +226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    left: box.left + win.pageXOffset - docElem.clientLeft
 	                };
 	            }
-
+	
 	            function hexToRgb(hex) {
 	                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 	                return result ? {
@@ -235,33 +235,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    b: parseInt(result[3], 16)
 	                } : null;
 	            }
-
+	
 	            function convertStyle(obj) {
 	                var style = '';
-
+	
 	                for (var a in obj) {
 	                    if (obj.hasOwnProperty(a)) {
 	                        style += (a + ':' + obj[a] + ';');
 	                    }
 	                }
-
+	
 	                return style;
 	            }
-
+	
 	            var Effect = {
-
+	
 	                // Effect delay
 	                duration: 500,
-
+	
 	                show: function(e) {
-
+	
 	                    // Disable right click
 	                    if (e.button === 2) {
 	                        return false;
 	                    }
-
+	
 	                    var el = this;
-
+	
 	                    // Create ripple
 	                    var ripple = document.createElement('div');
 	                    var customColor = this.dataset.inkColor;
@@ -269,34 +269,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var hasCustomRipple = customColor || customOpacity;
 	                    ripple.className = 'ink-ripple';
 	                    el.appendChild(ripple);
-
+	
 	                    // Get click coordinate and element witdh
 	                    var pos = offset(el);
 	                    var relativeY = (e.pageY - pos.top);
 	                    var relativeX = (e.pageX - pos.left);
 	                    var scale = 'scale(' + ((el.clientWidth / 100) * 2.5) + ')';
-
+	
 	                    // Support for touch devices
 		            if ('touches' in e && e.touches.length) {                        
 		            	var touche = e.touches[0];
 		                relativeY = (touche.pageY - pos.top);
 		                relativeX = (touche.pageX - pos.left);
 	                    }
-
+	
 	                    // Attach data to element
 	                    ripple.setAttribute('data-hold', Date.now());
 	                    ripple.setAttribute('data-scale', scale);
 	                    ripple.setAttribute('data-x', relativeX);
 	                    ripple.setAttribute('data-y', relativeY);
-
+	
 	                    // Set ripple position
 	                    var rippleStyle = {
 	                        'top': relativeY + 'px',
 	                        'left': relativeX + 'px'
 	                    };
-
+	
 	                    ripple.className = ripple.className + ' ink-notransition';
-
+	
 	                    if (hasCustomRipple) {
 	                        var colorRgb;
 	                        if (customColor) {
@@ -311,10 +311,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        var bg = 'rgba(' + colorRgb + ',' + customOpacity + ')';
 	                        rippleStyle['background-color'] = bg;
 	                    }
-
+	
 	                    ripple.setAttribute('style', convertStyle(rippleStyle));
 	                    ripple.className = ripple.className.replace('ink-notransition', '');
-
+	
 	                    // Scale the ripple
 	                    rippleStyle['-webkit-transform'] = scale;
 	                    rippleStyle['-moz-transform'] = scale;
@@ -322,57 +322,57 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    rippleStyle['-o-transform'] = scale;
 	                    rippleStyle.transform = scale;
 	                    rippleStyle.opacity = '1';
-
+	
 	                    rippleStyle['-webkit-transition-duration'] = Effect.duration + 'ms';
 	                    rippleStyle['-moz-transition-duration'] = Effect.duration + 'ms';
 	                    rippleStyle['-o-transition-duration'] = Effect.duration + 'ms';
 	                    rippleStyle['transition-duration'] = Effect.duration + 'ms';
-
+	
 	                    ripple.setAttribute('style', convertStyle(rippleStyle));
 	                },
-
+	
 	                hide: function() {
-
+	
 	                    var el = this;
-
+	
 	                    // var width = el.clientWidth * 1.4;
-
+	
 	                    // Get first ripple
 	                    var ripple = null;
-
+	
 	                    var childrenLength = el.children.length;
-
+	
 	                    for (var a = 0; a < childrenLength; a++) {
 	                        if (el.children[a].className.indexOf('ink-ripple') !== -1) {
 	                            ripple = el.children[a];
 	                            continue;
 	                        }
 	                    }
-
+	
 	                    if (!ripple) {
 	                        return false;
 	                    }
-
+	
 	                    var relativeX = ripple.getAttribute('data-x');
 	                    var relativeY = ripple.getAttribute('data-y');
 	                    var scale = ripple.getAttribute('data-scale');
-
+	
 	                    // Get delay beetween mousedown and mouse leave
 	                    var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
 	                    var delay = 500 - diff;
-
+	
 	                    if (delay < 0) {
 	                        delay = 0;
 	                    }
-
+	
 	                    // Fade out ripple after delay
 		            $timeout(function() {
-
+	
 	                        var style = {
 	                            'top': relativeY + 'px',
 	                            'left': relativeX + 'px',
 	                            'opacity': '0',
-
+	
 	                            // Duration
 	                            '-webkit-transition-duration': Effect.duration + 'ms',
 	                            '-moz-transition-duration': Effect.duration + 'ms',
@@ -384,9 +384,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            '-o-transform': scale,
 	                            'transform': scale,
 	                        };
-
+	
 	                        ripple.setAttribute('style', convertStyle(style));
-
+	
 		                $timeout(function() {
 	                            try {
 	                                el.removeChild(ripple);
@@ -396,18 +396,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        }, Effect.duration);
 	                    }, delay);
 	                },
-
+	
 	                // Little hack to make <input> can perform ink effect
 	                wrapInput: function(elements) {
-
+	
 		        for (var a = 0, l = elements.length; a < l; a++) {
-
+	
 	                        var el = elements[a];
-
+	
 	                        if (el.tagName.toLowerCase() === 'input') {
-
+	
 	                            var parent = el.parentNode;
-
+	
 	                            // If input already have parent just pass through
 		                    if (parent.tagName.toLowerCase() === 'i'){
 		                    	var clsName = parent.className;
@@ -422,22 +422,22 @@ return /******/ (function(modules) { // webpackBootstrap
 		                        	return false;
 		                        }
 	                            }
-
+	
 	                            // Put element class and style to the specified parent
 	                            var wrapper = document.createElement('i');
 	                            wrapper.className = el.className + ' ink-input-wrapper';
-
+	
 	                            var elementStyle = el.getAttribute('style');
-
+	
 	                            if (!elementStyle) {
 	                                elementStyle = '';
 	                            }
-
+	
 	                            wrapper.setAttribute('style', elementStyle);
-
+	
 	                            el.className = 'ink-button-input';
 	                            el.removeAttribute('style');
-
+	
 	                            // Put element as child
 	                            parent.replaceChild(wrapper, el);
 	                            wrapper.appendChild(el);
@@ -445,19 +445,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	            };
-
+	
 	            Ink.displayEffect = function(options) {
 	                options = options || {};
-
+	
 	                if ('duration' in options) {
 	                    Effect.duration = options.duration;
 	                }
-
+	
 	                //Wrap input inside <i> tag
 	                var selectors = '.ink,.tab-item,.button-fab,.button-raised,.button-flat,.button-clear,a.item,.popup .button';
 		        var elements = $$(selectors); 
 		        Effect.wrapInput(elements);                
-
+	
 	                angular.forEach(elements, function(i) {
 	                    if ('ontouchstart' in window) {
 	                        i.addEventListener('touchstart', Effect.show, false);
@@ -470,10 +470,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                });
 	            };
-
+	
 	            return Ink;
 	    }
-
+	
 		// ink.inject = [];
 	};
 
@@ -484,27 +484,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = function(angularApp) {
 	angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
-
+	
 	    function Motion($timeout) {
 	        /*global document, window*/
-
+	
 	        'use strict';
-
+	
 	        /*============================================================================*/
 	        /* HELPERS (non-exports)
 	        /=============================================================================*
 	        /   Abstract common lookups and manipulations in case better alternatives
 	        /   arise or future cross-platform differences warrant separate handling
 	        /=============================================================================*/
-
+	
 	        function getViewportHeight() {
 	            return window.innerHeight;
 	        }
-
+	
 		// function getBoundingClientRect(domNode) {
 		//     return domNode.getBoundingClientRect;
 		// }
-
+	
 	        function showNotAnimatedElements(elements, total) {
 	            // Load the elements without effect
 	            for (var i = 0; i < total; i++) {
@@ -512,15 +512,15 @@ return /******/ (function(modules) { // webpackBootstrap
 		                child.className += ' in done';
 	            }
 	        }
-
-
-
+	
+	
+	
 	        /*============================================================================*/
 	        /* MOTION (EXPORT)
 	        /=============================================================================*
 	        /   Animation methods for the library
 	        /=============================================================================*/
-
+	
 	        var motion = {
 	            blinds: blinds,
 	            fadeSlideIn: fadeSlideIn,
@@ -530,9 +530,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ripple: ripple,
 	            slideUp: slideUp
 	        };
-
+	
 	        function blinds(options) {
-
+	
 	            // Declare our defaults
 	            var defaults = {
 	                finishDelayThrottle: 2,
@@ -541,39 +541,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	                selector: '.animate-blinds .item',
 	                startVelocity: 1100
 	            };
-
+	
 	            // Apply defaults if properties are not passed
 	            if (typeof options === 'undefined') {
 	                options = {};
 	            }
-
+	
 	            options.finishDelayThrottle = options.finishDelayThrottle || defaults.finishDelayThrottle;
 	            options.finishSpeedPercent = options.finishSpeedPercent || defaults.finishSpeedPercent;
 	            options.leftOffsetPercentage = options.leftOffsetPercentage || defaults.leftOffsetPercentage;
 	            options.startVelocity = options.startVelocity || defaults.startVelocity;
-
+	
 	            if (typeof options.selector == 'undefined') {
 	                options.selector = defaults.selector;
 	            }
-
+	
 	            // Fail early & silently log
 	            var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
-
+	
 	            if (isInvalidSelector) {
 	                console.log('invalid blinds selector');
 	                return false;
 	            }
-
+	
 	            var animateBlindsDom = document.querySelectorAll(options.selector);
 	            var elementsCount = animateBlindsDom.length;
 	            var elementAnimationCount = 0;
-
+	
 	            // Count the elements within the starting viewport so we're not exacting
 	            // more effort than required...
 	            //
 	            // We use css visiblity: hidden instead of display: none so the elements
 	            // maintain their DOM flow
-
+	
 	            var viewportHeight = getViewportHeight();
 	            for (var i = 0; i < elementsCount; i++) {
 	                if (animateBlindsDom[i].offsetTop < viewportHeight) {
@@ -582,7 +582,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                break;
 	            }
-
+	
 	            // Sequentially animate with a delay based on proximity
 	            var speed = options.startVelocity;
 	            for (var i = 0; i < elementAnimationCount; i++) {
@@ -594,7 +594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                child.style.transitionDelay = delay + "s";
 	                child.className += ' in';
 	            }
-
+	
 	            // When we're done animating, switch the class to 'done'
 		            $timeout(function() {
 	                for (var i = 0; i < elementAnimationCount; i++) {
@@ -607,15 +607,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    //child.querySelector('img').className += ' in';
 	                    animateBlindsDom[i].className += ' done';
 	                }
-
+	
 	            }, speed * options.finishSpeedPercent);
-
+	
 	            // Load the elements without effect
 	            showNotAnimatedElements(animateBlindsDom, elementsCount);
 	        }
-
+	
 	        function fadeSlideIn(options) {
-
+	
 	            // Declare our defaults
 	            var defaults = {
 	                finishDelayThrottle: 2,
@@ -624,39 +624,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	                selector: '.animate-fade-slide-in .item',
 	                startVelocity: 1100
 	            };
-
+	
 	            // Apply defaults if properties are not passed
 	            if (typeof options === 'undefined') {
 	                options = {};
 	            }
-
+	
 	            options.finishDelayThrottle = options.finishDelayThrottle || defaults.finishDelayThrottle;
 	            options.finishSpeedPercent = options.finishSpeedPercent || defaults.finishSpeedPercent;
 	            options.leftOffsetPercentage = options.leftOffsetPercentage || defaults.leftOffsetPercentage;
 	            options.startVelocity = options.startVelocity || defaults.startVelocity;
-
+	
 	            if (typeof options.selector == 'undefined') {
 	                options.selector = defaults.selector;
 	            }
-
+	
 	            // Fail early & silently log
 	            var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
-
+	
 	            if (isInvalidSelector) {
 	                console.log('invalid fadeSlideIn selector');
 	                return false;
 	            }
-
+	
 	            var animateFadeSlideInDom = document.querySelectorAll(options.selector);
 	            var elementsCount = animateFadeSlideInDom.length;
 	            var elementAnimationCount = 0;
-
+	
 	            // Count the elements within the starting viewport so we're not exacting
 	            // more effort than required...
 	            //
 	            // We use css visiblity: hidden instead of display: none so the elements
 	            // maintain their DOM flow
-
+	
 	            var viewportHeight = getViewportHeight();
 	            for (var i = 0; i < elementsCount; i++) {
 	                if (animateFadeSlideInDom[i].offsetTop < viewportHeight) {
@@ -665,7 +665,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                break;
 	            }
-
+	
 	            // Sequentially animate with a delay based on proximity
 	            var speed = options.startVelocity;
 	            for (var i = 0; i < elementAnimationCount; i++) {
@@ -677,7 +677,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                child.style.transitionDelay = delay + "s";
 	                child.className += ' in';
 	            }
-
+	
 	            // When we're done animating, switch the class to 'done'
 		            $timeout(function() {
 	                for (var i = 0; i < elementAnimationCount; i++) {
@@ -691,13 +691,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                animateFadeSlideInDom[0].className += ' done';
 	                }
 	            }, speed * options.finishSpeedPercent);
-
+	
 	            // Load the elements without effect
 	            showNotAnimatedElements(animateFadeSlideInDom, elementsCount);
 	        }
-
+	
 	        function fadeSlideInRight(options) {
-
+	
 	            // Declare our defaults
 	            var defaults = {
 	                finishDelayThrottle: 2,
@@ -706,39 +706,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	                selector: '.animate-fade-slide-in-right .item',
 	                startVelocity: 1100
 	            };
-
+	
 	            // Apply defaults if properties are not passed
 	            if (typeof options === 'undefined') {
 	                options = {};
 	            }
-
+	
 	            options.finishDelayThrottle = options.finishDelayThrottle || defaults.finishDelayThrottle;
 	            options.finishSpeedPercent = options.finishSpeedPercent || defaults.finishSpeedPercent;
 	            options.leftOffsetPercentage = options.leftOffsetPercentage || defaults.leftOffsetPercentage;
 	            options.startVelocity = options.startVelocity || defaults.startVelocity;
-
+	
 	            if (typeof options.selector == 'undefined') {
 	                options.selector = defaults.selector;
 	            }
-
+	
 	            // Fail early & silently log
 	            var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
-
+	
 	            if (isInvalidSelector) {
 	                console.log('invalid fadeSlideInRight selector');
 	                return false;
 	            }
-
+	
 	            var animateSlideInRightDom = document.querySelectorAll(options.selector);
 	            var elementsCount = animateSlideInRightDom.length;
 	            var elementAnimationCount = 0;
-
+	
 	            // Count the elements within the starting viewport so we're not
 	            // exacting more effort than required...
 	            //
 	            // We use css visiblity: hidden instead of display: none so the
 	            // elements maintain their DOM flow
-
+	
 	            var viewportHeight = getViewportHeight();
 	            for (var i = 0; i < elementsCount; i++) {
 	                if (animateSlideInRightDom[i].offsetTop < viewportHeight) {
@@ -747,7 +747,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                break;
 	            }
-
+	
 	            // Sequentially animate with a delay based on proximity
 	            var speed = options.startVelocity;
 	            for (var i = 0; i < elementAnimationCount; i++) {
@@ -759,7 +759,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                child.style.transitionDelay = delay + "s";
 	                child.className += ' in';
 	            }
-
+	
 	            // When we're done animating, switch the class to 'done'
 		            $timeout(function() {
 	                for (var i = 0; i < elementAnimationCount; i++) {
@@ -769,21 +769,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    // var delayValue = offset / speed / options.finishDelayThrottle;
 	                    // var delay = parseFloat(delayValue).toFixed(2);
 	                }
-
+	
 		                if(animateSlideInRightDom.length) {
-
+	
 	                    animateSlideInRightDom[0].className += ' done';
 		                }
-
+	
 	            }, speed * options.finishSpeedPercent);
-
+	
 	            // Load the elements without effect
 	            showNotAnimatedElements(animateSlideInRightDom, elementsCount);
-
+	
 	        }
-
+	
 	        function ripple(options) {
-
+	
 	            // Declare our defaults
 	            var defaults = {
 	                finishDelayThrottle: 2,
@@ -792,39 +792,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	                selector: '.animate-ripple .item',
 	                startVelocity: 1100
 	            };
-
+	
 	            // Apply defaults if properties are not passed
 	            if (typeof options === 'undefined') {
 	                options = {};
 	            }
-
+	
 	            options.finishDelayThrottle = options.finishDelayThrottle || defaults.finishDelayThrottle;
 	            options.finishSpeedPercent = options.finishSpeedPercent || defaults.finishSpeedPercent;
 	            options.leftOffsetPercentage = options.leftOffsetPercentage || defaults.leftOffsetPercentage;
 	            options.startVelocity = options.startVelocity || defaults.startVelocity;
-
+	
 	            if (typeof options.selector == 'undefined') {
 	                options.selector = defaults.selector;
 	            }
-
+	
 	            // Fail early & silently log
 	            var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
-
+	
 	            if (isInvalidSelector) {
 	                console.log('invalid ripple selector');
 	                return false;
 	            }
-
+	
 	            var animateRippleDom = document.querySelectorAll(options.selector);
 	            var elementsCount = animateRippleDom.length;
 	            var elementAnimationCount = 0;
-
+	
 	            // Count the elements within the starting viewport so we're not
 	            // exacting more effort than required...
 	            //
 	            // We use css visiblity: hidden instead of display: none so the
 	            // elements maintain their DOM flow
-
+	
 	            var viewportHeight = getViewportHeight();
 	            for (var i = 0; i < animateRippleDom.length; i++) {
 	                if (animateRippleDom[i].offsetTop < viewportHeight) {
@@ -833,7 +833,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                break;
 	            }
-
+	
 	            // Sequentially animate with a delay based on proximity
 	            var speed = options.startVelocity;
 	            for (var i = 0; i < elementAnimationCount; i++) {
@@ -845,7 +845,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                child.style.transitionDelay = delay + "s";
 	                child.className += ' in';
 	            }
-
+	
 	            // When we're done animating, switch the class to 'done'
 		    $timeout(function() {
 	                for (var i = 0; i < elementAnimationCount; i++) {
@@ -858,30 +858,30 @@ return /******/ (function(modules) { // webpackBootstrap
 		        if(animateRippleDom.length){
 		                animateRippleDom[0].className += ' done';
 	                }
-
+	
 	            }, speed * options.finishSpeedPercent);
-
+	
 	            // Load the elements without effect
 	            showNotAnimatedElements(animateRippleDom, elementsCount);
 	        }
-
+	
 	        function panInLeft(options) {
-
+	
 	            // We have a single option, so it may be passed as a string or property
 	            if (typeof options === 'string') {
 	                options = {
 	                    selector: options
 	                };
 	            }
-
+	
 	            // Fail early & silently log
 	            var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
-
+	
 	            if (isInvalidSelector) {
 	                console.log('invalid pushDown selector');
 	                return false;
 	            }
-
+	
 	            var animatePanInLeftDom = document.querySelectorAll(options.selector);
 	            var elementAnimationCount = animatePanInLeftDom.length;
 	            for (var i = 0; i < elementAnimationCount; i++) {
@@ -891,24 +891,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	                element.className = element.className.substr(0, indexOfClassNameToRemove);
 	            }
 	        }
-
+	
 	        function pushDown(options) {
-
+	
 	            // We have a single option, so it may be passed as a string or property
 	            if (typeof options === 'string') {
 	                options = {
 	                    selector: options
 	                };
 	            }
-
+	
 	            // Fail early & silently log
 	            var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
-
+	
 	            if (isInvalidSelector) {
 	                console.log('invalid pushDown selector');
 	                return false;
 	            }
-
+	
 	            var animatePushDownDom = document.querySelectorAll(options.selector);
 	            var elementAnimationCount = animatePushDownDom.length;
 	            for (var i = 0; i < elementAnimationCount; i++) {
@@ -918,24 +918,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	                element.className = element.className.substr(0, indexOfClassNameToRemove);
 	            }
 	        }
-
+	
 	        function slideUp(options) {
-
+	
 	            // We have a single option, so it may be passed as a string or property
 	            if (typeof options === 'string') {
 	                options = {
 	                    selector: options
 	                };
 	            }
-
+	
 	            // Fail early & silently log
 	            var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
-
+	
 	            if (isInvalidSelector) {
 	                console.log('invalid pushDown selector');
 	                return false;
 	            }
-
+	
 	            var animateSlideUpDom = document.querySelectorAll(options.selector);
 	            var elementAnimationCount = animateSlideUpDom.length;
 	            for (var i = 0; i < elementAnimationCount; i++) {
@@ -945,12 +945,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                element.className = element.className.substr(0, indexOfClassNameToRemove);
 	            }
 	        }
-
+	
 	        /* Export object
 	        /============================================================================*/
 	        return motion;
 	    }
-
+	
 	    // Motion.$inject = [];
 	};
 
@@ -959,3 +959,4 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ])
 });
 ;
+//# sourceMappingURL=ionic.material.min.js.map
