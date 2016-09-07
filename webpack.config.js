@@ -11,7 +11,8 @@ module.exports = {
         libraryTarget: 'umd',
         library: 'ionicMaterial',
         path: __dirname + '/dist',
-        filename: 'ionic.material.js'
+        filename: 'ionic.material.js',
+        sourceMapFilename: 'ionic.material.min.js.map'
     },
     resolve: {
         alias: {
@@ -25,5 +26,6 @@ module.exports = {
     plugins: [
         // uglifyPlugin
     ],
-    target : 'web'
+    target : 'web',
+    devtool: 'source-map'
 };
