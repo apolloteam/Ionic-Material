@@ -14,11 +14,11 @@
  */
 module.exports = function (angularApp) {
 
-    angularApp.factory('ionicMaterialInk', ink);
+	angularApp.factory('ionicMaterialInk', ['$timeout', ink]);
 
-    function ink (){
-        /*global document*/
-        var Ink = Ink || {};
+	function ink ($timeout){
+            /*global document*/
+            var Ink = Ink || {};
 
             // all DOM nodes
             var $$;
@@ -171,9 +171,10 @@ module.exports = function (angularApp) {
                     var scale = 'scale(' + ((el.clientWidth / 100) * 2.5) + ')';
 
                     // Support for touch devices
-                    if ('touches' in e) {
-                        relativeY = (e.touches[0].pageY - pos.top);
-                        relativeX = (e.touches[0].pageX - pos.left);
+	            if ('touches' in e && e.touches.length) {                        
+	            	var touche = e.touches[0];
+	                relativeY = (touche.pageY - pos.top);
+	                relativeX = (touche.pageX - pos.left);
                     }
 
                     // Attach data to element
@@ -228,7 +229,7 @@ module.exports = function (angularApp) {
 
                     var el = this;
 
-                    var width = el.clientWidth * 1.4;
+                    // var width = el.clientWidth * 1.4;
 
                     // Get first ripple
                     var ripple = null;
@@ -259,7 +260,7 @@ module.exports = function (angularApp) {
                     }
 
                     // Fade out ripple after delay
-                    setTimeout(function() {
+	            $timeout(function() {
 
                         var style = {
                             'top': relativeY + 'px',
@@ -280,7 +281,7 @@ module.exports = function (angularApp) {
 
                         ripple.setAttribute('style', convertStyle(style));
 
-                        setTimeout(function() {
+	                $timeout(function() {
                             try {
                                 el.removeChild(ripple);
                             } catch (e) {
@@ -293,7 +294,7 @@ module.exports = function (angularApp) {
                 // Little hack to make <input> can perform ink effect
                 wrapInput: function(elements) {
 
-                    for (var a = 0; a < elements.length; a++) {
+	        for (var a = 0, l = elements.length; a < l; a++) {
 
                         var el = elements[a];
 
@@ -302,16 +303,18 @@ module.exports = function (angularApp) {
                             var parent = el.parentNode;
 
                             // If input already have parent just pass through
-                            if (parent.tagName.toLowerCase() === 'i' &&
-                                parent.className.indexOf('ink') !== -1 &&
-                                parent.className.indexOf('tab-item') !== -1 &&
-                                parent.className.indexOf('button-fab') !== -1 &&
-                                parent.className.indexOf('button-raised') !== -1 &&
-                                parent.className.indexOf('button-flat') !== -1 &&
-                                parent.className.indexOf('button-clear') !== -1 &&
-                                parent.className.indexOf('button') !== -1 &&
-                                parent.className.indexOf('item') !== -1) {
-                                return false;
+	                    if (parent.tagName.toLowerCase() === 'i'){
+	                    	var clsName = parent.className;
+	                        if(clsName.indexOf('ink') !== -1 
+	                        && clsName.indexOf('tab-item') !== -1 
+	                        && clsName.indexOf('button-fab') !== -1 
+	                        && clsName.indexOf('button-raised') !== -1 
+	                        && clsName.indexOf('button-flat') !== -1 
+	                        && clsName.indexOf('button-clear') !== -1 
+	                        && clsName.indexOf('button') !== -1 
+	                        && clsName.indexOf('item') !== -1) {
+	                        	return false;
+	                        }
                             }
 
                             // Put element class and style to the specified parent
@@ -346,9 +349,10 @@ module.exports = function (angularApp) {
 
                 //Wrap input inside <i> tag
                 var selectors = '.ink,.tab-item,.button-fab,.button-raised,.button-flat,.button-clear,a.item,.popup .button';
-                Effect.wrapInput($$(selectors));
+	        var elements = $$(selectors); 
+	        Effect.wrapInput(elements);                
 
-                Array.prototype.forEach.call($$(selectors), function(i) {
+                angular.forEach(elements, function(i) {
                     if ('ontouchstart' in window) {
                         i.addEventListener('touchstart', Effect.show, false);
                         i.addEventListener('touchend', Effect.hide, false);
@@ -364,5 +368,5 @@ module.exports = function (angularApp) {
             return Ink;
     }
 
-    ink.inject = [];
+	// ink.inject = [];
 };

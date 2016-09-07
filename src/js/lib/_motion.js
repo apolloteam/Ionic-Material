@@ -1,7 +1,7 @@
 module.exports = function(angularApp) {
-    angularApp.factory('ionicMaterialMotion', Motion);
+angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
 
-    function Motion() {
+    function Motion($timeout) {
         /*global document, window*/
 
         'use strict';
@@ -17,16 +17,15 @@ module.exports = function(angularApp) {
             return window.innerHeight;
         }
 
-        function getBoundingClientRect(domNode) {
-            return domNode.getBoundingClientRect;
-        }
+	// function getBoundingClientRect(domNode) {
+	//     return domNode.getBoundingClientRect;
+	// }
 
         function showNotAnimatedElements(elements, total) {
             // Load the elements without effect
             for (var i = 0; i < total; i++) {
                 var child = elements[i];
-                child.className += ' in';
-                child.className += ' done';
+	                child.className += ' in done';
             }
         }
 
@@ -113,12 +112,12 @@ module.exports = function(angularApp) {
             }
 
             // When we're done animating, switch the class to 'done'
-            setTimeout(function() {
+	            $timeout(function() {
                 for (var i = 0; i < elementAnimationCount; i++) {
-                    var child = animateBlindsDom[i];
-                    var childOffset = child.getBoundingClientRect();
-                    var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
-                    var delay = parseFloat(offset / speed / options.finishDelayThrottle).toFixed(2);
+                    // var child = animateBlindsDom[i];
+	            // var childOffset = child.getBoundingClientRect();
+	            // var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
+	            // var delay = parseFloat(offset / speed / options.finishDelayThrottle).toFixed(2);
                     //child.querySelector('img').style.webkitTransitionDelay = delay + "s";
                     //child.querySelector('img').style.transitionDelay = delay + "s";
                     //child.querySelector('img').className += ' in';
@@ -196,16 +195,17 @@ module.exports = function(angularApp) {
             }
 
             // When we're done animating, switch the class to 'done'
-            setTimeout(function() {
+	            $timeout(function() {
                 for (var i = 0; i < elementAnimationCount; i++) {
-                    var child = animateFadeSlideInDom[i];
-                    var childOffset = child.getBoundingClientRect();
-                    var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
-                    var delayValue = offset / speed / options.finishDelayThrottle;
-                    var delay = parseFloat(delayValue).toFixed(2);
+                    // var child = animateFadeSlideInDom[i];
+                    //var childOffset = child.getBoundingClientRect();
+                    // var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
+                    // var delayValue = offset / speed / options.finishDelayThrottle;
+                    // var delay = parseFloat(delayValue).toFixed(2);
                 }
+                if (animateFadeSlideInDom.length) {
                 animateFadeSlideInDom[0].className += ' done';
-
+                }
             }, speed * options.finishSpeedPercent);
 
             // Load the elements without effect
@@ -277,20 +277,19 @@ module.exports = function(angularApp) {
             }
 
             // When we're done animating, switch the class to 'done'
-            setTimeout(function() {
+	            $timeout(function() {
                 for (var i = 0; i < elementAnimationCount; i++) {
-                    var child = animateSlideInRightDom[i];
-                    var childOffset = child.getBoundingClientRect();
-                    var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
-                    var delayValue = offset / speed / options.finishDelayThrottle;
-                    var delay = parseFloat(delayValue).toFixed(2);
+                    // var child = animateSlideInRightDom[i];
+                    // var childOffset = child.getBoundingClientRect();
+                    // var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
+                    // var delayValue = offset / speed / options.finishDelayThrottle;
+                    // var delay = parseFloat(delayValue).toFixed(2);
                 }
 
-                var animateSlide = animateSlideInRightDom[0];
+	                if(animateSlideInRightDom.length) {
 
-                if(animateSlide) {
-                    animateSlide.className += ' done';
-                }
+                    animateSlideInRightDom[0].className += ' done';
+	                }
 
             }, speed * options.finishSpeedPercent);
 
@@ -364,15 +363,17 @@ module.exports = function(angularApp) {
             }
 
             // When we're done animating, switch the class to 'done'
-            setTimeout(function() {
+	    $timeout(function() {
                 for (var i = 0; i < elementAnimationCount; i++) {
-                    var child = animateRippleDom[i];
-                    var childOffset = child.getBoundingClientRect();
-                    var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
-                    var delayValue = offset / speed / options.finishDelayThrottle;
-                    var delay = parseFloat(delayValue).toFixed(2);
+                    // var child = animateRippleDom[i];
+                    // var childOffset = child.getBoundingClientRect();
+                    // var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
+                    // var delayValue = offset / speed / options.finishDelayThrottle;
+                    // var delay = parseFloat(delayValue).toFixed(2);
                 }
-                animateRippleDom[0].className += ' done';
+	        if(animateRippleDom.length){
+	                animateRippleDom[0].className += ' done';
+                }
 
             }, speed * options.finishSpeedPercent);
 
@@ -466,5 +467,5 @@ module.exports = function(angularApp) {
         return motion;
     }
 
-    Motion.$inject = [];
+    // Motion.$inject = [];
 };
