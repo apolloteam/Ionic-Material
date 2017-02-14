@@ -1,7 +1,7 @@
 module.exports = function(angularApp) {
-angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
+angularApp.factory('ionicMaterialMotion', ['$log', '$timeout', Motion]);
 
-    function Motion($timeout) {
+    function Motion($log, $timeout) {
         /*global document, window*/
 
         'use strict';
@@ -28,8 +28,6 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
 	                child.className += ' in done';
             }
         }
-
-
 
         /*============================================================================*/
         /* MOTION (EXPORT)
@@ -76,7 +74,8 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
             var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
 
             if (isInvalidSelector) {
-                console.log('invalid blinds selector');
+                // console.log('invalid blinds selector');
+                $log.error('invalid blinds selector');
                 return false;
             }
 
@@ -159,7 +158,8 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
             var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
 
             if (isInvalidSelector) {
-                console.log('invalid fadeSlideIn selector');
+                // console.log('invalid fadeSlideIn selector');
+                $log.error('invalid fadeSlideIn selector');
                 return false;
             }
 
@@ -241,7 +241,8 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
             var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
 
             if (isInvalidSelector) {
-                console.log('invalid fadeSlideInRight selector');
+                // console.log('invalid fadeSlideInRight selector');
+                $log.error('invalid fadeSlideInRight selector');
                 return false;
             }
 
@@ -327,7 +328,8 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
             var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
 
             if (isInvalidSelector) {
-                console.log('invalid ripple selector');
+                // console.log('invalid ripple selector');
+                $log.error('invalid ripple selector');
                 return false;
             }
 
@@ -394,7 +396,8 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
             var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
 
             if (isInvalidSelector) {
-                console.log('invalid pushDown selector');
+                // console.log('invalid pushDown selector');
+                $log.error('invalid pushDown selector');
                 return false;
             }
 
@@ -421,7 +424,8 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
             var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
 
             if (isInvalidSelector) {
-                console.log('invalid pushDown selector');
+                // console.log('invalid pushDown selector');
+                $log.error('invalid pushDown selector');
                 return false;
             }
 
@@ -448,7 +452,8 @@ angularApp.factory('ionicMaterialMotion', ['$timeout', Motion]);
             var isInvalidSelector = typeof options.selector === 'undefined' || options.selector === '';
 
             if (isInvalidSelector) {
-                console.log('invalid pushDown selector');
+                // console.log('invalid pushDown selector');
+                $log.error('invalid pushDown selector');
                 return false;
             }
 
